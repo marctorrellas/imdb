@@ -1,0 +1,12 @@
+name: imdb
+channels:
+  - anaconda
+  - conda-forge
+dependencies:
+  # python related packages
+  - python>=3.7
+  - requests
+  - tomlkit
+  - mkl=2019.1                 # proprietary - Intel Simplified Software License: https://software.intel.com/en-us/license/intel-simplified-software-license
+  - pip>=19.3.1                # MIT
+  - certifi=2019.6.16

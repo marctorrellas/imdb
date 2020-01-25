@@ -20,7 +20,7 @@ To distribute, just provide the whl file in the dist folder.
 To install run `pip install dist/feedstock-{version}-py3-none-any.whl`
 
 
-### Train
+### Train
 
 There are several options here. To see the help page:
 
@@ -31,7 +31,7 @@ imdb_train -h
 Run without arguments to use sample data
 
 
-### Predict
+### Predict
 
 There are several options here. To see the help page:
 
@@ -42,7 +42,7 @@ imdb_predict -h
 Run without arguments to use sample data
 
 
-### Evaluate
+### Evaluate
 
 There are several options here. To see the help page:
 

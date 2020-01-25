@@ -14,7 +14,7 @@ def evaluate():
     parser = argparse.ArgumentParser()
 
     parser.add_argument(
-        "data_dir", default=None, help="Directory where data is located"
+        "--data-dir", default=None, help="Directory where data is located"
     )
     parser.add_argument(
         "--data-filename",
@@ -44,7 +44,7 @@ def evaluate():
 
     log.info(f"Loading data")
     data = load_data(
-        parsed_args.data_filename, parsed_args.data_dir, parsed_args.overwrite_cache
+        parsed_args.data_filename, parsed_args.data_dir, not parsed_args.overwrite_cache
     )
 
     log.info(f"Loading model")

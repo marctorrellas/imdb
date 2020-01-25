@@ -2,6 +2,7 @@ import argparse
 import logging
 
 import joblib
+import pandas as pd
 
 from imdb.config import DEFAULT_MODEL_LOCATION, DEFAULT_PREDICTION_LOCATION
 from imdb.core.data_loaders import load_data
@@ -13,7 +14,7 @@ def predict():
 
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "data_dir", default=None, help="Directory where data is located"
+        "--data-dir", default=None, help="Directory where data is located"
     )
     parser.add_argument(
         "--data-filename",
@@ -23,12 +24,12 @@ def predict():
         "It has preference over data_dir",
     )
     parser.add_argument(
-        "--model_location",
+        "--model-location",
         default=DEFAULT_MODEL_LOCATION,
         help="Path where the model is located",
     )
     parser.add_argument(
-        "--output_csv",
+        "--output-csv",
         default=DEFAULT_PREDICTION_LOCATION,
         help="Path where the resulting csv containing the predictions is dumped",
     )
@@ -43,8 +44,6 @@ def predict():
     model = joblib.load(parsed_args.model_location)
 
     log.info(f"Predicting")
-    predictions = model.predict(
-        data, parsed_args.cv_enabled, parsed_args.calibration_enabled
-    )
+    predictions = pd.DataFrame(model.predict(data.text), index=data.index)
     predictions.to_csv(parsed_args.output_csv)
     log.info(f"Predictions saved to {parsed_args.output_csv}")

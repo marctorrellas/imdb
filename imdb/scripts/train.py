@@ -14,9 +14,7 @@ def train():
 
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--data-dir",
-        default=None,
-        help="Directory where data is located",
+        "--data-dir", default=None, help="Directory where data is located"
     )
     parser.add_argument(
         "--cv-enabled",

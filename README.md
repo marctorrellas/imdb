@@ -39,7 +39,8 @@ There are several options here. To see the help page:
 imdb_predict -h 
 ```
 
-Run without arguments to use sample data
+Run without arguments to use sample data. Note that this cannot be run before 
+`imdb_train` as there has to be a trained model.
 
 
 ### Evaluate
@@ -50,7 +51,8 @@ There are several options here. To see the help page:
 imdb_evaluate -h 
 ```
 
-Run without arguments to use sample data
+Run without arguments to use sample data. Note that this cannot be run before 
+`imdb_train` as there has to be a trained model.
 
 
 Contributors guidelines

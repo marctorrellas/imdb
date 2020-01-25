@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-env_name=feedstock
+env_name=imdb
 conda_setup_file=conda_setup.yml
 
 if [[ -z ${operating_system} ]]; then

@@ -7,6 +7,9 @@ dependencies:
   - python>=3.7
   - requests
   - tomlkit
-  - mkl=2019.1                 # proprietary - Intel Simplified Software License: https://software.intel.com/en-us/license/intel-simplified-software-license
+  - mkl=2019.5                 # proprietary - Intel Simplified Software License: https://software.intel.com/en-us/license/intel-simplified-software-license
   - pip>=19.3.1                # MIT
   - certifi=2019.6.16
+  - scikit-learn=0.22.1
+  - numpy=1.18.1
+  - scipy=1.3.1

@@ -1,14 +1,17 @@
-feedstock
+IMDB classifier
 ==============================
 
-A classifier for IMDB movie reviews. See reports folder for PoC notebooks:
+A classifier for IMDB movie reviews, but in general would work for many binary text 
+classification problems. See reports folder for:
 
-- Classical NLP notebook
-- Deep learning based notebook is actually hosted in Google
+- Classical NLP proof-of-concept notebook
+- Deep learning based notebook, actually hosted in Google
 Colab, see https://colab.research.google.com/drive/1YUewI5gALb78zVKD0FHtbI7KI3nEwT5y
+- Future / Missing work
 
 
-# User guide
+User guide
+-----------
 
 
 ### Install
@@ -23,50 +26,52 @@ To install run `pip install dist/feedstock-{version}-py3-none-any.whl`
 There are several options here. To see the help page:
 
 ```
-fs_train -h 
+imdb_train -h 
 ```
 
-Typical use cases:
-
-```
-xxx
-```
+Run without arguments to use sample data
 
 ### Predict
 
 There are several options here. To see the help page:
 
 ```
-fs_predict -h 
+imdb_predict -h 
 ```
 
-Typical use cases:
+Run without arguments to use sample data
+
+### Evaluate
+
+
+There are several options here. To see the help page:
 
 ```
-xxx
+imdb_evaluate -h 
 ```
 
+Run without arguments to use sample data
 
 
-# Contributors guidelines
+Contributors guidelines
+---------------------
 
-### Set-up the environment
+### Set-up the conda environment
+
 1. Navigate to the project folder.
 1. Deactivate your conda environment, if any.
 1. Create the environment with `. create_conda_env.sh`.
 1. Bonus: run `. after_poetry_install.sh` to add some nice extensions to Jupyter :)
 
-## Development packages
-If you need to use locally modified versions of the packages,
-1. Uninstall the necessary package by commenting it in pyproject and running `poetry update`.
-1. Add the local version using conda-develop, `conda install conda-build; conda-develop path/to/repo`.
-1. Make note in the pyproject.toml and README.md of the commit of the local library used for reproducibility.
 
-Note: using local library versions is discouraged because it circumvents the packaging locking provided in this template.
+ ### Run tests
 
-## Run tests
+`pytest imdb`
 
-XXXXX
+### Build updated package
+
+Run `poetry build`
+
 
 Project Organization
 ------------
@@ -78,8 +83,6 @@ Project Organization
 │   ├── interim          <- Intermediate data that has been transformed.
 │   ├── processed        <- Data after applying some processing pipeline.
 │   └── raw              <- The original, immutable data dump.
-│
-├── models               <- Trained and serialized models, model predictions, or model summaries
 │
 ├── notebooks            <- Jupyter notebooks.
 │
@@ -93,51 +96,42 @@ Project Organization
 ├── build-mac.yml        <- The mac specific conda requirements file for installation
 ├── create_conda_env.sh  <- The script to create the conda env using all other files
 ├── pyproject.toml       <- The poetry requirements file for reproducing the dev virtual 
-│                           environment
+│                           environment, and allowing to build the wheel
 │
-└── src                          <- Source code for use in this project.
-    ├── __init__.py              <- Makes src a Python module
-    ├── config.py                <- A config to define file paths, datasets and pipelines
+└── imdb                          <- Source code for use in this project.
+    ├── __init__.py              
+    ├── config.py                <- A config to define file paths, and other constants
     │
-    ├── data                     <- Scripts to generate data_pods and run pipelines
-    │   ├── __init__.py
-    │   └── load_data.py         <- utility functions to load the data pods generated in make_dataset.py
-    │
-    ├── scripts                  <- A store of scripts to run the analysis.
-    │   ├── __init__.py
-    │   ├── make_dataset.py      <- make datasets from data/raw
-    │   ├── run_pipelines.py     <- A script to run the pipelines defined in config.py over the preprocessed
-    │   │                           data_pods.
-    │   └── run_preprocessing.py <- A script to run the preprocessing pipeline defined in config.py over the
-    │                               loaded data_pods.
-    │
-    ├── pipes                    <- A store of prototype pipes specific to the poject
+    ├── configs                  <- The definition of hyper-parameters for ML models (not used for now)
     │   └── __init__.py
     │
-    ├── configs                  <- The definition of the pipelines to be used in the experiments.
+    ├── core                     <- Groups core functions (probably can be split into many if it grows)
     │   ├── __init__.py
-    │   └── example.py           <- An example (empty) pipeline configuration file.
+    │   ├── data_loaders.py      <- Utility functions to load data
+    │   ├── analysis.py          <- Utility functions to analyse models
+    │   ├── visualize.py         <- Utility functions to visualise data or results
+    │   └── metrics.py           <- Utility functions to load data
     │
-    └── visualization            <- Scripts to create exploratory and results oriented visualizations
+    ├── models                    <- Classes defining the available ML models 
+    │   ├── __init__.py
+    │   ├── base_model.py        <- Define the class all other models inherit from
+    │   └─- models.py            <- Defines the ML models
+    │   
+    ├── scripts                  <- A store of scripts to run from CLI
+    │   ├── __init__.py
+    │   ├── train.py   
+    │   ├── predict.py 
+    │   └── evaluate.py
+    │
+    └── tests
         ├── __init__.py
-        └── visualize.py
+        ├── benchmark            
+        ├── feature              
+        ├── fixtures             
+        └── unit                 
 ```
 
 --------
-
-
-Build updated package
----------------------
-
-Run `poetry build`
-
-
-Missing pieces for future work
-------------------------------
-
-* Set up a web framework to enable API requests, using e.g. Flask
-* Implement a deep learning solution (see Google Colab notebook)
-*  
 
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>

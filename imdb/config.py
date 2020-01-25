@@ -3,7 +3,7 @@ import logging
 import sys
 from pathlib import Path
 
-PROJECT_DIR = Path(__file__).resolve().parents[1]
+PROJECT_DIR = Path(__file__).resolve().parents[0]
 DEFAULT_DATA_LOCATION = PROJECT_DIR / "data/sample/"
 DEFAULT_SUBSAMPLE = 100
 date = datetime.now().strftime("%Y_%m_%d")

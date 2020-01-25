@@ -11,10 +11,9 @@ Colab, see https://colab.research.google.com/drive/1YUewI5gALb78zVKD0FHtbI7KI3nE
 
 
 User guide
------------
+---------------
 
-
-### Install
+### Install
 
 To distribute, just provide the whl file in the dist folder. 
 
@@ -31,6 +30,7 @@ imdb_train -h
 
 Run without arguments to use sample data
 
+
 ### Predict
 
 There are several options here. To see the help page:
@@ -41,8 +41,8 @@ imdb_predict -h
 
 Run without arguments to use sample data
 
-### Evaluate
 
+### Evaluate
 
 There are several options here. To see the help page:
 
@@ -64,7 +64,7 @@ Contributors guidelines
 1. Bonus: run `. after_poetry_install.sh` to add some nice extensions to Jupyter :)
 
 
- ### Run tests
+### Run tests
 
 `pytest imdb`
 

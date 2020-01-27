@@ -13098,7 +13098,7 @@ as the notebooks already include the latter.</p>
 <p>About better packaging</p>
 <ul>
 <li>Added <code>data/sample</code> to inside the package but should be somewhere else. I'm not sure how to solve this with poetry. In fact, this is an issue in poetry still to be solved <a href="https://github.com/python-poetry/poetry/issues/890">https://github.com/python-poetry/poetry/issues/890</a></li>
-<li>Cythonise code</li>
+<li>Cythonise code to speed up and obfuscate IP</li>
 <li>Not an expert on this but there has to be a way to package the dependencies together with the package, so that it can be installed offline</li>
 <li>Add wheel to a (potentially company internal) repository, rather than to the Github repo.</li>
 </ul>
@@ -13110,11 +13110,20 @@ as the notebooks already include the latter.</p>
 <li>Use a linter e.g. pylint, and isort</li>
 <li>Enable continuous integration</li>
 </ul>
-<p>About scaling the system</p>
+<p>About production-ready system / scaling</p>
 <ul>
-<li>For very big data probably would be better to use something like, e.g. Spark, rather than pandas. Not experienced on this, but actually going to <a href="https://pages.databricks.com/202001-EU-EV-UnifyDataMLworkshopLondon_04.WaitlistPage.html">https://pages.databricks.com/202001-EU-EV-UnifyDataMLworkshopLondon_04.WaitlistPage.html</a> next month :)</li>
+<li>For very big data probably would be better to use something like, e.g. Spark, rather than pandas. Dask can also be useful. Not very experienced on this, but actually going to <a href="https://pages.databricks.com/202001-EU-EV-UnifyDataMLworkshopLondon_04.WaitlistPage.html">https://pages.databricks.com/202001-EU-EV-UnifyDataMLworkshopLondon_04.WaitlistPage.html</a> next month :)</li>
 <li>Set up a flask / django server to enable API calls, so that the server doesn't need to run in the same machine</li>
-<li>Allows data to be in a database, scaling better than reading from disk</li>
+<li>Allow data to be in a database, scaling better than reading from disk</li>
+<li>Use something like <code>MLflow</code> to version the model and data used to train it</li>
+<li>If speed is critical<ul>
+<li>Enable parallelised predictions, usually this is easy and we use</li>
+<li>Some models, like SVM, allow descentralised/parallelised training, where not all data needs to be in the same node</li>
+<li>TF-IDF, for example, allows easy parallelisation. So depending on the final ML pipeline we might parallelise (either across cores or different physical machines) some bits to improve speed/memory</li>
+</ul>
+</li>
+<li>If data is continuously arriving, allow the system to periodically auto-retrain with its own outputs, logging metrics. In each of those iterations, one might potentially want the system to send a random sample of the outputs (some non-confident and some confident), just to review by a human everything is going fine.</li>
+<li>In a really big system we should create a Docker image, more easily deployed and machine-agnostic. Then, we can use something like Kubernetes for orchestration</li>
 </ul>
 
 </div>
